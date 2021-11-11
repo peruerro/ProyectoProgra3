@@ -11,13 +11,14 @@ import clases.Usuario;
 
 
 public class SelectData {
-	/**
-     * Conectar a la bd bdproyecto.db 
+	 /**
+     * Conectar con la bd bdproyecto.db
+     *
      * @return la conexion
      */
     private static Connection connect()
     {
-        // SQLite connection string
+        
         String name = "bdproyecto.db";
         String url = "jdbc:sqlite:" + name;
         Connection conn = null;
@@ -34,6 +35,7 @@ public class SelectData {
     }
     /**
      * Seleciona todo lo de la tabla Usuario
+     * @return devuelve los usuarios
      */
     public static ArrayList<Usuario> seleccionarUsuario()
     {
@@ -47,25 +49,20 @@ public class SelectData {
                 )
         {
         	ResultSet rs=stmt.executeQuery(sql);
-            
-            while (rs.next())
-            {
-                System.out.println
-                        (
-                                rs.getString("nombre") +  "\t" +
-                                rs.getString("nombreUsuario") + "\t" +
-                                rs.getString("contrasenya") + "\t" +
-                                rs.getInt("admin")
-                        );
-            }
-            
-        
+       while (rs.next()){
+    	   Usuario u= new Usuario(rs.getString("nombre"),rs.getString("nombreUsuario"),rs.getString("contrasenya"),rs.getInt("admin"));
+    	   usuarios.add(u);
+       }
         } catch (SQLException e)
         {
             System.out.println(e.getMessage());
         }
 		return usuarios;
     }
+    /**
+     * Metodo principal para probar que funciona la select
+     * @param args
+     */
     public static void main(String[]args){
     	ArrayList<Usuario> u= SelectData.seleccionarUsuario();
     	System.out.println(u);
