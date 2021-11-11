@@ -21,7 +21,7 @@ public class Usuario {
 		/**
 		 * si el usuario es administrador o no
 		 */
-		private boolean admin;
+		private int admin;
 		
 		/**
 		 * rellena los parametros con lo siguiente
@@ -30,7 +30,7 @@ public class Usuario {
 		 * @param contrasenya con la contraseña del usuario
 		 * @param admin devuelve un true/false dependiendo de si es administrador o no
 		 */
-		public Usuario(String nombre, String nombreUsuario, String contrasenya, boolean admin) {
+		public Usuario(String nombre, String nombreUsuario, String contrasenya, int admin) {
 			super();
 			this.nombre = nombre;
 			this.nombreUsuario = nombreUsuario;
@@ -44,6 +44,10 @@ public class Usuario {
 		public String getNombre() {
 			return nombre;
 		}
+		/**
+		 * Modifica el nombre del usuario
+		 * @param nombre el nuevo nombre del usuario 
+		 */
 		public void setNombre(String nombre) {
 			this.nombre = nombre;
 		}
@@ -59,11 +63,17 @@ public class Usuario {
 		public void setContrasenya(String contrasenya) {
 			this.contrasenya = contrasenya;
 		}
-		public boolean isAdmin() {
+		public int getAdmin() {
 			return admin;
 		}
-		public void setAdmin(boolean admin) {
+		public void setAdmin(int admin) {
 			this.admin = admin;
 		}
+		@Override
+		public String toString() {
+			return "Usuario [nombre=" + nombre + ", nombreUsuario=" + nombreUsuario + ", contrasenya=" + contrasenya
+					+ ", admin=" + admin + "]";
+		}
+		
 
 }
