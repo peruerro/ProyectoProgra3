@@ -18,15 +18,28 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-
+/**
+ * Pantalla de Login donde los usuarios podran entrar o crear un nuevo usuario
+ * @author Peru Erro Arrue
+ * @version 1.0
+ *
+ */
 public class Login extends JFrame {
-
+	/**
+	 * El JPanel
+	 */
 	private JPanel contentPane;
+	/**
+	 * El JTextField donde se escribira el nombreUsuario
+	 */
 	private JTextField textField;
+	/**
+	 * El JPasswordField donde se escribira la contrasenya
+	 */
 	private JPasswordField passwordField;
 
 	/**
-	 * Launch the application.
+	 * Hace funcionar la ventana
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -42,7 +55,7 @@ public class Login extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Creacion del JFrame del Login
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,16 +89,24 @@ public class Login extends JFrame {
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.setBounds(264, 142, 115, 29);
 		btnEntrar.addActionListener(new ActionListener(){
+			/**
+			 * Acciona el boton Entrar. Cuando es pulsado se comprueba si el usuario se encuentra en la BD
+			 */
 			public void actionPerformed(ActionEvent e) {
 				boolean UsuarioValido=false;
 				ArrayList<Usuario> u=SelectData.seleccionarUsuario();
 				String nombreUsuario=textField.getText();
 				String contrasenya=passwordField.getText();
 				for(Usuario a:u){
-					if(nombreUsuario.equals(a.getNombreUsuario())&&contrasenya.equals(a.getContrasenya())){
+					if(nombreUsuario.equals(a.getNombreUsuario())&&contrasenya.equals(a.getContrasenya())&&(a.getAdmin())==0){
+						JOptionPane.showMessageDialog(Login.this, "Bienvenido");
 						MenuPrincipal pantalla=new MenuPrincipal();
 						pantalla.setVisible(true);	
 						dispose();
+					}else if(nombreUsuario.equals(a.getNombreUsuario())&&contrasenya.equals(a.getContrasenya())&&(a.getAdmin())==1){
+						JOptionPane.showMessageDialog(Login.this, "Bienvenido");
+						MenuAdmin pantalla=new MenuAdmin();
+						pantalla.setVisible(true);
 					}else{
 						JOptionPane.showMessageDialog(Login.this, "Usuario o contraseña incorrecta");
 					}
