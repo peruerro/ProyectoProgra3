@@ -36,12 +36,16 @@ public class Jugador extends Persona{
 		this.posicion = posicion;
 	}
 	/**
-	 * devuelve la pala
+	 * Devuelve la pala
 	 * @return un string de la pala
 	 */
 	public String getPala() {
 		return pala;
 	}
+	/**
+	 * Modifica la pala del jugador
+	 * @param pala la nueva pala del jugador
+	 */
 	public void setPala(String pala) {
 		this.pala = pala;
 	}
