@@ -6,16 +6,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
- * @author sqlitetutorial.net
+ * Crea una base de datoss
+ * @author Peru Erro Arrue
+ * @version 1.0
  */
 public class CrearBD
 {
 
     /**
-     * Connect to a sample database
+     * Conecta el proyecto con una base de datos
      *
-     * @param fileName the database file name
+     * @param fileName el nombre del fichero
      */
     public static void crearNuevaBD(String fileName)
     {
@@ -37,6 +38,7 @@ public class CrearBD
     }
 
     /**
+     * Metodo principal para ejeutar el metodo crearNuevaBD
      * @param args the command line arguments
      */
     public static void main(String[] args)
