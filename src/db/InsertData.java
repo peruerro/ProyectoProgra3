@@ -7,17 +7,18 @@ import java.sql.SQLException;
 
 
 /**
- * 
+ * Insertar objetos a la base de datos
  * @author Peru Erro Arrue
+ * @version 1.0
  *
  */
 public class InsertData
 {
 
     /**
-     * Connect to the test.db database
+     * Conectar con la bd bdproyecto.db
      *
-     * @return the Connection object
+     * @return la conexion
      */
     private Connection connect()
     {
@@ -39,12 +40,14 @@ public class InsertData
     }
 
     /**
-     * Insert a new row into the warehouses table
+     * Insertar usuarios en tabla Usuario
      *
-     * @param name
-     * @param capacity
+     * @param nombre el nombre del usuario
+     * @param nombreUsuario el nombre de usuario
+     * @param constrasenya la contrasenya del usuario
+     * @param admin 0 o 1 para saber si es administrador o no
      */
-    public void insert(String nombre, String nombreUsuario, String contrasenya, int admin)
+    public void insertUsuario(String nombre, String nombreUsuario, String contrasenya, int admin)
     {
         String sql = "INSERT INTO Usuario(nombre,nombreUsuario, contrasenya, admin) VALUES(?,?,?,?)";
 
@@ -63,11 +66,20 @@ public class InsertData
         }
         catch (SQLException e)
         {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
-    
-    public void insert(String nombre, int edad, String nacionalidad, int titulos, String pala, String manoHabil, String posicion)
+    /**
+     * Insertar jugadores en tabla Jugador
+     * @param nombre el nombre del jugador
+     * @param edad la edad del jugador
+     * @param nacionalidad donde nacio el jugador
+     * @param titulos que titulos tiene el jugador
+     * @param pala que pala utiliza el jugador
+     * @param manoHabil si el jugador es diestro o zurdo
+     * @param posicion si el jugador es jugador de reves o de derecha
+     */
+    public void insertJugador(String nombre, int edad, String nacionalidad, int titulos, String pala, String manoHabil, String posicion)
     {
     	String sql = "INSERT INTO Jugador (nombre, edad, nacionalidad, titulos, pala, manohabil, posicion) VALUES (?,?,?,?,?,?,?)";
     	try
@@ -95,6 +107,7 @@ public class InsertData
     	
 
     /**
+     * Metodo principal para ejecutar la inserts
      * @param args the command line arguments
      */
     public static void main(String[] args)
@@ -102,21 +115,22 @@ public class InsertData
 
         InsertData app = new InsertData();
 
-        // insert three new rows
-        app.insert("Jonan", "Arana","joni",1);
-        app.insert("Alex", "sarona","romagnoli",1);
+        
+        //app.insertUsuario("Jonan", "Arana","joni",1);
+        //app.insertUsuario("Alex", "sarona","romagnoli",1);
+        app.insertUsuario("Peru", "peruerro", "erro", 0);
         
         InsertData app1=new InsertData();
-        app1.insert("Alejandro Galan",25,"España", 0, "Adidas Metalbone", "Diestra", "Reves");
-        app1.insert("Juan Lebron", 25, "España", 0, "Babolat Technical Viper", "Diestra", "Derecha");
-        app1.insert("Paquito Navarro", 32, "España", 0, "BullPadel Hack", "Diestra", "Reves");
-        app1.insert("Martin Di Nenno", 24, "Argentina", 0, "BullPadel Vertex", "Diestra", "Derecha");
-        app1.insert("Sanyo Gutierrez", 37, "Argentina", 0, "Head Graphene", "Diestra", "Derecha");
-        app1.insert("Agustin Tapia", 22, "Argentina", 0, "Nox AT10", "Diestra", "Reves");
-        app1.insert("Fernando Belasteguin", 42, "Argentina", 0, "Wilson Bela Pro", "Diestra", "Reves");
-        app1.insert("Pablo Lima", 34, "Brasil", 0, "Asics Speed", "Izquierda", "Derecha");
-        app1.insert("Juan Tello", 26, "Argentina", 0,"BullPadel Vertex" , "Diestra", "Reves");
-        app1.insert("Federico Chingotto", 24, "Argentina", 0,"BullPadel Vertex", "Diestra", "Derecha");
+        app1.insertJugador("Alejandro Galan",25,"España", 0, "Adidas Metalbone", "Diestra", "Reves");
+        app1.insertJugador("Juan Lebron", 25, "España", 0, "Babolat Technical Viper", "Diestra", "Derecha");
+        app1.insertJugador("Paquito Navarro", 32, "España", 0, "BullPadel Hack", "Diestra", "Reves");
+        app1.insertJugador("Martin Di Nenno", 24, "Argentina", 0, "BullPadel Vertex", "Diestra", "Derecha");
+        app1.insertJugador("Sanyo Gutierrez", 37, "Argentina", 0, "Head Graphene", "Diestra", "Derecha");
+        app1.insertJugador("Agustin Tapia", 22, "Argentina", 0, "Nox AT10", "Diestra", "Reves");
+        app1.insertJugador("Fernando Belasteguin", 42, "Argentina", 0, "Wilson Bela Pro", "Diestra", "Reves");
+        app1.insertJugador("Pablo Lima", 34, "Brasil", 0, "Asics Speed", "Izquierda", "Derecha");
+        app1.insertJugador("Juan Tello", 26, "Argentina", 0,"BullPadel Vertex" , "Diestra", "Reves");
+        app1.insertJugador("Federico Chingotto", 24, "Argentina", 0,"BullPadel Vertex", "Diestra", "Derecha");
     }
     
 
