@@ -97,19 +97,29 @@ public class Login extends JFrame {
 				ArrayList<Usuario> u=SelectData.seleccionarUsuario();
 				String nombreUsuario=textField.getText();
 				String contrasenya=passwordField.getText();
+				boolean usuarioValido=false;
+				boolean eresEditor=false;
 				for(Usuario a:u){
 					if(nombreUsuario.equals(a.getNombreUsuario())&&contrasenya.equals(a.getContrasenya())&&(a.getAdmin())==0){
-						JOptionPane.showMessageDialog(Login.this, "Bienvenido");
-						MenuPrincipal pantalla=new MenuPrincipal();
-						pantalla.setVisible(true);	
-						dispose();
+						usuarioValido=true;
+						
+						
 					}else if(nombreUsuario.equals(a.getNombreUsuario())&&contrasenya.equals(a.getContrasenya())&&(a.getAdmin())==1){
-						JOptionPane.showMessageDialog(Login.this, "Bienvenido");
-						MenuAdmin pantalla=new MenuAdmin();
-						pantalla.setVisible(true);
-					}else{
-						JOptionPane.showMessageDialog(Login.this, "Usuario o contraseña incorrecta");
+						usuarioValido=true;
+						eresEditor=true;
+						
 					}
+				}if (usuarioValido){
+					JOptionPane.showMessageDialog(Login.this, "Bienvenido");
+					MenuPrincipal pantalla=new MenuPrincipal();
+					pantalla.setVisible(true);	
+					dispose();
+				}else if(usuarioValido && eresEditor){
+					JOptionPane.showMessageDialog(Login.this, "Bienvenido");
+					MenuAdmin pantalla=new MenuAdmin();
+					pantalla.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(Login.this, "Usuario o contraseña incorrecta");
 				}
 				
 			   
