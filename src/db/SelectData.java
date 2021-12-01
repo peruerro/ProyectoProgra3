@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import clases.Jugador;
 import clases.Usuario;
 
 
@@ -58,6 +59,28 @@ public class SelectData {
             System.out.println(e.getMessage());
         }
 		return usuarios;
+    }
+    public static ArrayList<Jugador> seleccionarJugador()
+    {
+        String sql = "SELECT nombre,edad, nacionalidad, titulos, pala, manoHabil, posicion FROM Usuario";
+        ArrayList<Jugador> jugadores=new ArrayList<Jugador>();
+        try
+                (
+                        Connection conn = connect();
+                        Statement stmt  = conn.createStatement();
+                       
+                )
+        {
+        	ResultSet rs=stmt.executeQuery(sql);
+       while (rs.next()){
+    	   Jugador j= new Jugador(rs.getString("nombre"),rs.getInt("edad"),rs.getString("nacionalidad"),rs.getInt("titulos"),rs.getString("pala"),rs.getString("manoHabil"),rs.getString("posicion"));
+    	   jugadores.add(j);
+       }
+        } catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+		return jugadores;
     }
     /**
      * Metodo principal para probar que funciona la select
