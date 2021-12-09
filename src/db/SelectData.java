@@ -20,7 +20,7 @@ public class SelectData {
     private static Connection connect()
     {
         
-        String name = "bdproyecto.db";
+        String name = "basededatos";
         String url = "jdbc:sqlite:" + name;
         Connection conn = null;
 
@@ -60,28 +60,28 @@ public class SelectData {
         }
 		return usuarios;
     }
-    public static ArrayList<Jugador> seleccionarJugador()
-    {
-        String sql = "SELECT nombre,edad, nacionalidad, titulos, pala, manoHabil, posicion FROM Usuario";
-        ArrayList<Jugador> jugadores=new ArrayList<Jugador>();
-        try
-                (
-                        Connection conn = connect();
-                        Statement stmt  = conn.createStatement();
-                       
-                )
-        {
-        	ResultSet rs=stmt.executeQuery(sql);
-       while (rs.next()){
-    	   Jugador j= new Jugador(rs.getString("nombre"),rs.getInt("edad"),rs.getString("nacionalidad"),rs.getInt("titulos"),rs.getString("pala"),rs.getString("manoHabil"),rs.getString("posicion"));
-    	   jugadores.add(j);
-       }
-        } catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-		return jugadores;
-    }
+//    public static ArrayList<Jugador> seleccionarJugador()
+//    {
+//        String sql = "SELECT nombre,edad, nacionalidad, titulos, pala, manoHabil, posicion FROM Usuario";
+//        ArrayList<Jugador> jugadores=new ArrayList<Jugador>();
+//        try
+//                (
+//                        Connection conn = connect();
+//                        Statement stmt  = conn.createStatement();
+//                       
+//                )
+//        {
+//        	ResultSet rs=stmt.executeQuery(sql);
+//       while (rs.next()){
+//    	   Jugador j= new Jugador(rs.getString("nombre"),rs.getInt("edad"),rs.getString("nacionalidad"),rs.getInt("titulos"),rs.getString("pala"),rs.getString("manoHabil"),rs.getString("posicion"));
+//    	   jugadores.add(j);
+//       }
+//        } catch (SQLException e)
+//        {
+//            System.out.println(e.getMessage());
+//        }
+//		return jugadores;
+//    }
     /**
      * Metodo principal para probar que funciona la select
      * @param args

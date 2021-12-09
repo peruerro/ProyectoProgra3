@@ -18,10 +18,7 @@ public class Persona {
 	 * Indica donde nacio la persona
 	 */
 	private String nacionalidad;
-	/**
-	 * Indica los titulos ganados por la persona
-	 */
-	private int titulos;
+	
 	/**
 	 * Rellena los parametros de la clase Persona
 	 * @param nombre El nombre de la persona
@@ -29,12 +26,12 @@ public class Persona {
 	 * @param nacionalidad Donde nacio la persona
 	 * @param titulos que titulos ha ganado la persona
 	 */
-	public Persona(String nombre, int edad, String nacionalidad, int titulos) {
+	public Persona(String nombre, int edad, String nacionalidad) {
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
 		this.nacionalidad = nacionalidad;
-		this.titulos=titulos;
+	
 	}
 	/**
 	 * Devuelve el nombre de la Persona
@@ -78,20 +75,7 @@ public class Persona {
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
-	/**
-	 * Devuelve los titulos de la persona
-	 * @return un String con los titulos
-	 */
-	public int getTitulos() {
-		return titulos;
-	}
-	/**
-	 * Modifica los titulos de la persona
-	 * @param titulos los nuevos titulos de la persona
-	 */
-	public void setTitulos(int titulos) {
-		this.titulos = titulos;
-	}
+	
 	
 	
 	

@@ -11,8 +11,8 @@ public class Entrenador extends Persona{
 	 */
 	private Jugador jugadoresEntrenados;
 
-	public Entrenador(String nombre, int edad, String nacionalidad, int titulos, Jugador jugadoresEntrenados) {
-		super(nombre, edad, nacionalidad, titulos);
+	public Entrenador(String nombre, int edad, String nacionalidad, Jugador jugadoresEntrenados) {
+		super(nombre, edad, nacionalidad);
 		this.jugadoresEntrenados = jugadoresEntrenados;
 	}
 	/**

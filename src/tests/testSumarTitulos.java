@@ -17,27 +17,27 @@ import db.SelectData;
  *
  */
 public class testSumarTitulos {
-	/**
-	 * ArrayList de jugadores
-	 */
-	private ArrayList<Jugador> jugadores;
-
-	@Before
-	public void setUp() throws Exception {
-		ArrayList<Jugador> jugadores=SelectData.seleccionarJugador();
-		for (Jugador a:jugadores){
-			a.setTitulos(1);
-		}
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void test() {
-		int resultado=Jugador.sumarTitulos();
-		assertEquals(10,resultado,0.0);
-	}
+//	/**
+//	 * ArrayList de jugadores
+//	 */
+//	private ArrayList<Jugador> jugadores;
+//
+//	@Before
+//	public void setUp() throws Exception {
+//		ArrayList<Jugador> jugadores=SelectData.seleccionarJugador();
+//		for (Jugador a:jugadores){
+//			a.setTitulos(1);
+//		}
+//	}
+//
+//	@After
+//	public void tearDown() throws Exception {
+//	}
+//
+//	@Test
+//	public void test() {
+//		int resultado=Jugador.sumarTitulos();
+//		assertEquals(10,resultado,0.0);
+//	}
 
 }

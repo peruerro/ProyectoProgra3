@@ -17,19 +17,77 @@ public class dbManager {
 	    public static void crearTablaJugador()
 	    {
 	        
-	        String name = "bdproyecto.db";
+	        String name = "basededatos.db";
 	        String url = "jdbc:sqlite:" + name;
 
 	        
 	        String sql = "CREATE TABLE IF NOT EXISTS Jugador (\n"
-	                + "    nombre text not null,\n"
+	                + "    idJugador int not null primary key ,\n"
+	        		+ "    nombre text not null,\n"
 	                + "    edad interger not null,\n"
 	                + "    nacionalidad text not null,\n"
-	                + "    titulos interger not null,\n"
 	                + "    pala text not null,\n"
 	                + "    manoHabil text not null,\n"
-	                + "    posicion text not null\n"
+	                + "    posicion text not null, \n"
+	                + "    puntosRanking int not null, \n"
+	                + "    titulos text not null"
 	          
+	                + ");";
+
+	        try
+	                (
+	                        Connection conn = DriverManager.getConnection(url);
+	                        Statement stmt = conn.createStatement()
+	                )
+	        {
+	            // create a new table
+	            stmt.execute(sql);
+	        } catch (SQLException e)
+	        {
+	        	e.printStackTrace();
+	        }
+	    }
+	    public static void crearTablaPartido()
+	    {
+	        
+	        String name = "basededatos.db";
+	        String url = "jdbc:sqlite:" + name;
+
+	        
+	        String sql = "CREATE TABLE IF NOT EXISTS Partido (\n"
+	                + "    idPartido interger primary key not null ,\n"
+	                + "    ganador text not null,\n"
+	                + "    perdedor text not null,\n"
+	                + "    resultGanador interger not null,\n"
+	                + "    resultPerdedor interger not null,\n"
+	                + "    fase text not null \n"          
+	                + ");";
+
+	        try
+	                (
+	                        Connection conn = DriverManager.getConnection(url);
+	                        Statement stmt = conn.createStatement()
+	                )
+	        {
+	            // create a new table
+	            stmt.execute(sql);
+	        } catch (SQLException e)
+	        {
+	        	e.printStackTrace();
+	        }
+	    }
+	    public static void crearTablaUsuario()
+	    {
+	        
+	        String name = "basededatos.db";
+	        String url = "jdbc:sqlite:" + name;
+
+	        
+	        String sql = "CREATE TABLE IF NOT EXISTS Usuario (\n"
+	                + "    nombre text primary key not null ,\n"
+	                + "    nombreUsuario text not null,\n"
+	                + "    contrasenya text not null,\n"
+	                + "    admin interger not null \n"   
 	                + ");";
 
 	        try
@@ -53,6 +111,9 @@ public class dbManager {
 	    public static void main(String[] args)
 	    {
 	        crearTablaJugador();
+	    	//crearTablaPartido();
+	    	//crearTablaUsuario();
+	    	
 	    }
 
 	}

@@ -1,5 +1,6 @@
 package clases;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 import db.SelectData;
@@ -24,6 +25,18 @@ public class Jugador extends Persona{
 	 */
 	private String posicion;
 	/**
+	 * el idJugador
+	 */
+	private int idJugador;
+	/**
+	 * los puntos totales del ranking
+	 */
+	private int puntosRanking;
+	/**
+	 * ArrayList que contiene los titulos que tiene el jugador
+	 */
+	private ArrayList <Torneo> titulos;
+	/**
 	 * rellena los parametros
 	 * @param nombre nombre del jugador
 	 * @param edad la edad del jugador
@@ -33,12 +46,17 @@ public class Jugador extends Persona{
 	 * @param manoHabil la mano con la que coge la pala
 	 * @param posicion la posición del jugador en pista
 	 */
-	public Jugador(String nombre, int edad, String nacionalidad, int titulos, String pala, String manoHabil,
-			String posicion) {
-		super(nombre, edad, nacionalidad, titulos);
+	
+	
+	public Jugador(String nombre, int edad, String nacionalidad, String pala, String manoHabil,
+			String posicion, int idJugador, int puntosRanking, ArrayList <Torneo> titulos) {
+		super(nombre, edad, nacionalidad);
 		this.pala = pala;
 		this.manoHabil = manoHabil;
 		this.posicion = posicion;
+		this.idJugador=idJugador;
+		this.puntosRanking=puntosRanking;
+		this.titulos=titulos;
 	}
 	/**
 	 * Devuelve la pala
@@ -66,20 +84,40 @@ public class Jugador extends Persona{
 	public void setPosicion(String posicion) {
 		this.posicion = posicion;
 	}
+	
 
+	public int getIdJugador() {
+		return idJugador;
+	}
+	public void setIdJugador(int idJugador) {
+		this.idJugador = idJugador;
+	}
+	
+	public int getPuntosRanking() {
+		return puntosRanking;
+	}
+	public void setPuntosRanking(int puntosRanking) {
+		this.puntosRanking = puntosRanking;
+	}
+	public ArrayList<Torneo> getTitulos() {
+		return titulos;
+	}
+	public void setTitulos(ArrayList<Torneo> titulos) {
+		this.titulos = titulos;
+	}
 	/**
 	 * Metodo para sumar los titulos de todos los jugadores
 	 * @return el numero de titulos totales
 	 */
-	public static int sumarTitulos (){
-		ArrayList<Jugador>j =SelectData.seleccionarJugador();
-		int titulos=0;
-		for(Jugador a:j){
-			titulos=titulos+a.getTitulos();
-		}
-		
-		return titulos;
-	}
+//	public static int sumarTitulos (){
+//		ArrayList<Jugador>j =SelectData.seleccionarJugador();
+//		int titulos=0;
+//		for(Jugador a:j){
+//			titulos=titulos+a.getTitulos();
+//		}
+//		
+//		return titulos;
+//	}
 	
 }
 	
