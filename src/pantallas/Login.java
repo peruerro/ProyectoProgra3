@@ -84,6 +84,13 @@ public class Login extends JFrame {
 		
 		JButton btnCrearNuevoUsuario = new JButton("Crear nuevo usuario");
 		btnCrearNuevoUsuario.setBounds(227, 97, 186, 29);
+		btnCrearNuevoUsuario.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				Registro pantalla=new Registro ();
+				pantalla.setVisible(true);
+				dispose();
+			}
+		});
 		contentPane.add(btnCrearNuevoUsuario);
 		
 		JButton btnEntrar = new JButton("Entrar");
