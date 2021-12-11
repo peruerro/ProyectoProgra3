@@ -2,6 +2,8 @@ package pantallas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -12,6 +14,7 @@ import clases.Usuario;
 import db.InsertData;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -41,7 +44,7 @@ public class Registro extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Creacion del JFrame del Registro de usuarios
 	 */
 	public Registro() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,12 +91,20 @@ public class Registro extends JFrame {
 		JButton btnCrearUsuario = new JButton("Crear Usuario");
 		btnCrearUsuario.setBounds(413, 251, 134, 29);
 		btnCrearUsuario.addActionListener(new ActionListener(){
+			/**
+			 * Acciona el botón Crear Usuario. Para ello comprueba que las dos contrasenyas sean iguales y 
+			 * si son iguales añade los datos del usuario a la base de datos
+			 */
 			public void actionPerformed (ActionEvent e){
-				if (passwordField.getText().equals(passwordField_1.getText())){
-					String a=textField.getText();
-					String b=textField_1.getText();
-					String c=passwordField.getText();
-					int d=0;
+				InsertData insertar= new InsertData();
+				
+				String pass=passwordField.getText();
+				String pass2=passwordField_1.getText();
+				if (pass.equals(pass2)){
+					insertar.insertUsuario(textField.getText(), textField_1.getText(), passwordField.getText(), 0);
+					JOptionPane.showMessageDialog(null, "¡Usuario creado!, ahora inicie sesión");
+				}else{
+					JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
 				}
 				
 			}
@@ -102,6 +113,16 @@ public class Registro extends JFrame {
 		
 		JButton btnIniciarSesin = new JButton("Iniciar Sesi\u00F3n");
 		btnIniciarSesin.setBounds(413, 310, 134, 29);
+		btnIniciarSesin.addActionListener(new ActionListener(){
+			/**
+			 * Acciona el boton Iniciar Sesion. Te lleva al la pestaña Login y cierra Registro.
+			 */
+			public void actionPerformed (ActionEvent e){
+				Login pantalla=new Login();
+				pantalla.setVisible(true);
+				dispose();
+			}
+		});
 		contentPane.add(btnIniciarSesin);
 	}
 }

@@ -47,6 +47,9 @@ public class dbManager {
 	        	e.printStackTrace();
 	        }
 	    }
+	    /**
+	     * Creacion de la tabla Partido
+	     */
 	    public static void crearTablaPartido()
 	    {
 	        
@@ -54,9 +57,9 @@ public class dbManager {
 	        String url = "jdbc:sqlite:" + name;
 
 	        
-	        String sql = "CREATE TABLE IF NOT EXISTS Partido (\n"
+	        String sql = "CREATE TABLE IF NOT EXISTS Partido2 (\n"
 	                + "    idPartido interger primary key not null ,\n"
-	                + "    ganador text not null,\n"
+	                + "    ganador Jugador not null,\n"
 	                + "    perdedor text not null,\n"
 	                + "    resultGanador interger not null,\n"
 	                + "    resultPerdedor interger not null,\n"
@@ -76,6 +79,9 @@ public class dbManager {
 	        	e.printStackTrace();
 	        }
 	    }
+	    /**
+	     * Creacion de la tabla Usuario
+	     */
 	    public static void crearTablaUsuario()
 	    {
 	        
@@ -103,6 +109,35 @@ public class dbManager {
 	        	e.printStackTrace();
 	        }
 	    }
+	    /**
+	     * Creacion de la Fase 
+	     */
+	    public static void crearTablaFase(){
+	        
+	        String name = "basededatos.db";
+	        String url = "jdbc:sqlite:" + name;
+
+	        
+	        String sql = "CREATE TABLE IF NOT EXISTS Fase (\n"
+	                + "    idFase interger primary key not null ,\n"
+	                + "    nombre text not null,\n"
+	                + "    puntosGanador interger not null,\n"
+	                + "    puntosPerdedor interger not null \n"   
+	                + ");";
+
+	        try
+	                (
+	                        Connection conn = DriverManager.getConnection(url);
+	                        Statement stmt = conn.createStatement()
+	                )
+	        {
+	            // create a new table
+	            stmt.execute(sql);
+	        } catch (SQLException e)
+	        {
+	        	e.printStackTrace();
+	        }
+	    }
 
 	    /**
 	     * Metodo principal para poder utilizar el metodo crearTablaJugador
@@ -110,9 +145,10 @@ public class dbManager {
 	     */
 	    public static void main(String[] args)
 	    {
-	        crearTablaJugador();
+	        //crearTablaJugador();
 	    	//crearTablaPartido();
 	    	//crearTablaUsuario();
+	    	//crearTablaFase();
 	    	
 	    }
 

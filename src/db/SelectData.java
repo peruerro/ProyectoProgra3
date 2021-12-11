@@ -60,28 +60,28 @@ public class SelectData {
         }
 		return usuarios;
     }
-//    public static ArrayList<Jugador> seleccionarJugador()
-//    {
-//        String sql = "SELECT nombre,edad, nacionalidad, titulos, pala, manoHabil, posicion FROM Usuario";
-//        ArrayList<Jugador> jugadores=new ArrayList<Jugador>();
-//        try
-//                (
-//                        Connection conn = connect();
-//                        Statement stmt  = conn.createStatement();
-//                       
-//                )
-//        {
-//        	ResultSet rs=stmt.executeQuery(sql);
-//       while (rs.next()){
-//    	   Jugador j= new Jugador(rs.getString("nombre"),rs.getInt("edad"),rs.getString("nacionalidad"),rs.getInt("titulos"),rs.getString("pala"),rs.getString("manoHabil"),rs.getString("posicion"));
-//    	   jugadores.add(j);
-//       }
-//        } catch (SQLException e)
-//        {
-//            System.out.println(e.getMessage());
-//        }
-//		return jugadores;
-//    }
+    public static ArrayList<Jugador> seleccionarJugador()
+    {
+        String sql = "SELECT id Jugador,nombre,edad, nacionalidad, pala, manoHabil, posicion, puntosRanking, titulos FROM Jugador";
+        ArrayList<Jugador> jugadores=new ArrayList<Jugador>();
+        try
+                (
+                        Connection conn = connect();
+                        Statement stmt  = conn.createStatement();
+                       
+                )
+        {
+        	ResultSet rs=stmt.executeQuery(sql);
+       while (rs.next()){
+    	   Jugador j= new Jugador(rs.getInt("idJugador"),rs.getString("nombre"),rs.getInt("edad"),rs.getString("nacionalidad"),rs.getString("pala"),rs.getString("manoHabil"),rs.getString("posicion"),rs.getInt("puntosRanking"),rs.getObject("titulos"));
+    	   jugadores.add(j);
+       }
+        } catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+		return jugadores;
+    }
     /**
      * Metodo principal para probar que funciona la select
      * @param args

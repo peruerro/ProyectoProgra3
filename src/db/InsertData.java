@@ -1,11 +1,13 @@
 package db;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import clases.Jugador;
 import clases.Torneo;
 
 
@@ -132,7 +134,28 @@ public class InsertData
     		System.out.println(e.getMessage());
     	}
     }
+    public void insertTorneo(int idTorneo, String nombre, java.sql.Array partidos, Jugador jugador)
+    {
+        String sql = "INSERT INTO Torneo(idTorneo,nombre, partidos, jugador) VALUES(?,?,?,?)";
 
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+            pstmt.setInt(1, idTorneo);
+            pstmt.setString(2, nombre);
+            pstmt.setArray(3, partidos);
+            pstmt.setObject(4, jugador);
+            
+            pstmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
     /**
      * Metodo principal para ejecutar la inserts
      * @param args the command line arguments

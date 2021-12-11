@@ -37,6 +37,9 @@ public class Usuario {
 			this.contrasenya = contrasenya;
 			this.admin = admin;
 		}
+		public Usuario() {
+			// TODO Auto-generated constructor stub
+		}
 		/**
 		 * devuelve el nombre del usuario
 		 * @return nombre del usuario
