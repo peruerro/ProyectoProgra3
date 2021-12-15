@@ -84,9 +84,9 @@ public class InsertData
      * @param manoHabil si el jugador es diestro o zurdo
      * @param posicion si el jugador es jugador de reves o de derecha
      */
-    public void insertJugador(int idJugador, String nombre, int edad, String nacionalidad, String pala, String manoHabil, String posicion, int puntosRanking, String titulos)
+    public void insertJugador(int idJugador, String nombre, int edad, String nacionalidad, String pala, String manoHabil, String posicion, int puntosRanking)
     {
-    	String sql = "INSERT INTO Jugador (idJugador, nombre, edad, nacionalidad, pala, manohabil, posicion, puntosRanking, titulos) VALUES (?,?,?,?,?,?,?,?,?)";
+    	String sql = "INSERT INTO Jugador (idJugador, nombre, edad, nacionalidad, pala, manohabil, posicion, puntosRanking) VALUES (?,?,?,?,?,?,?,?)";
     	try
     		(
     				Connection conn = this.connect();
@@ -101,7 +101,7 @@ public class InsertData
     		pstmt.setString(6, manoHabil);
     		pstmt.setString(7, posicion);
     		pstmt.setInt(8, puntosRanking);
-    		pstmt.setString(9, titulos);
+    		
     		
     		pstmt.executeUpdate();
     	}
@@ -111,9 +111,9 @@ public class InsertData
     	}
     }
     
-    public void insertPartido(int idPartido, String ganador, String perdedor, int resultGanador, int resultPerdedor, String fase)
+    public void insertPartido(int idPartido, int idGanador, int idPerdedor, int resultGanador, int resultPerdedor, int idfase, int idTorneo)
     {
-    	String sql = "INSERT INTO Partido (idPartido, ganador, perdedor, resultGanador, resultPerdedor, fase) VALUES (?,?,?,?,?,?)";
+    	String sql = "INSERT INTO Partido (idPartido, idGanador, idPerdedor, resultGanador, resultPerdedor, idfase, idTorneo) VALUES (?,?,?,?,?,?,?)";
     	try
     		(
     				Connection conn = this.connect();
@@ -121,11 +121,12 @@ public class InsertData
     		)
     	{
     		pstmt.setInt(1, idPartido);
-    		pstmt.setString(2, ganador);
-    		pstmt.setString(3, perdedor);
+    		pstmt.setInt(2, idGanador);
+    		pstmt.setInt(3, idPerdedor);
     		pstmt.setInt(4, resultGanador);
     		pstmt.setInt(5, resultPerdedor);
-    		pstmt.setString(6, fase);
+    		pstmt.setInt(6, idfase);
+    		pstmt.setInt(7, idTorneo);
     		
     		pstmt.executeUpdate();
     	}
@@ -134,9 +135,9 @@ public class InsertData
     		System.out.println(e.getMessage());
     	}
     }
-    public void insertTorneo(int idTorneo, String nombre, java.sql.Array partidos, Jugador jugador)
+    public void insertTorneo(int idTorneo, String nombre, int idGanador)
     {
-        String sql = "INSERT INTO Torneo(idTorneo,nombre, partidos, jugador) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO Torneo(idTorneo,nombre, idGanador) VALUES(?,?,?)";
 
         try
                 (
@@ -146,8 +147,30 @@ public class InsertData
         {
             pstmt.setInt(1, idTorneo);
             pstmt.setString(2, nombre);
-            pstmt.setArray(3, partidos);
-            pstmt.setObject(4, jugador);
+            pstmt.setObject(3, idGanador);
+            
+            pstmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        
+    }
+    public void insertFase(int idFase, String nombre, int puntosGanador, int puntosPerdedor)
+    {
+        String sql = "INSERT INTO Fase(idFase,nombre, puntosGanador, puntosPerdedor) VALUES(?,?,?,?)";
+
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+            pstmt.setInt(1, idFase);
+            pstmt.setString(2, nombre);
+            pstmt.setInt(3, puntosGanador);
+            pstmt.setInt(4, puntosPerdedor);
             
             pstmt.executeUpdate();
         }
@@ -167,22 +190,89 @@ public class InsertData
 //        app.insertPartido(1, " Alejandro Galán", "Federico Chingotto", 2, 1, "Cuartos de final");
 
         
-        app.insertUsuario("Jonan", "Arana","joni",1);
-        app.insertUsuario("Alex", "sarona","romagnoli",1);
-        app.insertUsuario("Peru", "peruerro", "erro", 0);
+//        app.insertUsuario("Jonan", "Arana","joni",1);
+//        app.insertUsuario("Alex", "sarona","romagnoli",1);
+//        app.insertUsuario("Peru", "peruerro", "erro", 0);
 //        
 //        InsertData app1=new InsertData();
-//        app1.insertJugador(1,"Alejandro Galan",25,"España", "Adidas Metalbone", "Diestra", "Reves",0,"");
-//        app1.insertJugador(2,"Juan Lebron", 25, "España", "Babolat Technical Viper", "Diestra", "Derecha",0,"");
-//        app1.insertJugador(3,"Paquito Navarro", 32, "España", "BullPadel Hack", "Diestra", "Reves",0,"");
-//        app1.insertJugador(4,"Martin Di Nenno", 24, "Argentina", "BullPadel Vertex", "Diestra", "Derecha",0,"");
-//        app1.insertJugador(5,"Sanyo Gutierrez", 37, "Argentina", "Head Graphene", "Diestra", "Derecha",0,"");
-//        app1.insertJugador(6,"Agustin Tapia", 22, "Argentina", "Nox AT10", "Diestra", "Reves",0,"");
-//        app1.insertJugador(7,"Fernando Belasteguin", 42, "Argentina", "Wilson Bela Pro", "Diestra", "Reves",0,"");
-//        app1.insertJugador(8,"Pablo Lima", 34, "Brasil", "Asics Speed", "Izquierda", "Derecha",0,"");
-//        app1.insertJugador(9,"Juan Tello", 26, "Argentina","BullPadel Vertex" , "Diestra", "Reves",0,"");
-//        app1.insertJugador(10,"Federico Chingotto", 24, "Argentina","BullPadel Vertex", "Diestra", "Derecha",0,"");
+//        app.insertJugador(1,"Alejandro Galan",25,"España", "Adidas Metalbone", "Diestra", "Reves",0);
+//        app.insertJugador(2,"Juan Lebron", 25, "España", "Babolat Technical Viper", "Diestra", "Derecha",0);
+//        app.insertJugador(3,"Paquito Navarro", 32, "España", "BullPadel Hack", "Diestra", "Reves",0);
+//        app.insertJugador(4,"Martin Di Nenno", 24, "Argentina", "BullPadel Vertex", "Diestra", "Derecha",0);
+//        app.insertJugador(5,"Sanyo Gutierrez", 37, "Argentina", "Head Graphene", "Diestra", "Derecha",0);
+//        app.insertJugador(6,"Agustin Tapia", 22, "Argentina", "Nox AT10", "Diestra", "Reves",0);
+//        app.insertJugador(7,"Fernando Belasteguin", 42, "Argentina", "Wilson Bela Pro", "Diestra", "Reves",0);
+//        app.insertJugador(8,"Pablo Lima", 34, "Brasil", "Asics Speed", "Izquierda", "Derecha",0);
+//        app.insertJugador(9,"Juan Tello", 26, "Argentina","BullPadel Vertex" , "Diestra", "Reves",0);
+//        app.insertJugador(10,"Federico Chingotto", 24, "Argentina","BullPadel Vertex", "Diestra", "Derecha",0);
+        //app.insertJugador(11, "Franco Stupaczuk", 25, "Argentina", "Starvie Raptor", "Diestra", "Revés", 0);
+       // app.insertJugador(12, "Alejandro Ruiz", 27, "España", "Adidas Metalbone", "Izquierda", "Derecha", 0);
+       // app.insertJugador(13, "Arturo Coello", 19, "España", "Head Gamma Pro", "Izquierda", "Derecha", 0);
+       // app.insertJugador(14, "Miguel Yanguas", 19, "España", "Nox AT10", "Diestra", "Derecha", 0);
+       //app.insertJugador(15, "Iñigo Zaratiegui", 26, "España", "Starvie Raptor", "Diestra", "Revés", 0);
+       // app.insertJugador(16, "Agustín Gutierrez", 23, "Argentina", "Starvie Raptor", "Diestra", "Revés", 0);
+       // app.insertJugador(17, "Agustín Silingo", 38, "Argentina", "J Hayber Dominator", "Diestra", "Revés", 0);
+       // app.insertJugador(18, "Javier Ruiz", 34, "España", "Siux Fenix", "Diestra", "Revés", 0);
+       // 	app.insertJugador(19, "Miguel Lamperti", 43, "Argentina", "Nox ML10", "Diestra", "Revés", 0);
+       // 	app.insertJugador(20, "Javier Rico", 23, "España", "Enebe Supra Carbon", "Izquierda", "Derecha", 0);
+       // 	app.insertJugador(21, "Coki Nieto", 23, "España", "Starvie Titania", "Diestra", "Revés", 0);
+       // 	app.insertJugador(22, "Lucho Capra", 28, "Argentina", "Siux Trilogy", "Izquierda", "Derecha", 0);
+       // 	app.insertJugador(23, "Maximiliano Sanchez", 35, "Argentina", "Bullpadel Vertex", "Diestra", "Revés", 0);
+//        app.insertFase(1, "Cuartos de Final", 0, 310);
+//        app.insertFase(2, "Seminifales", 0, 610);
+//        app.insertFase(3, "Final", 1700, 1020);
+        
+//        app.insertTorneo(1, "Adeslas Madrid Open",7);
+//        app.insertTorneo(2, "Cervezas Victoria Marbella Master",1);
+//        app.insertTorneo(3, "Estrella Damm Menorca Open",2);
+//        app.insertTorneo(4, "Cascais Padel Master",1);
+//        app.insertTorneo(5, "Buenos Aires Pádel Master",3);
+        //app.insertPartido(idPartido, idGanador, idPerdedor, resultGanador, resultPerdedor, idfase, idTorneo);
+        //Torneo Adeslas Madrid Open
+//        app.insertPartido(1,12,2,2,1,1,1);
+//        app.insertPartido(2, 6, 9, 2, 1, 1, 1);
+//        app.insertPartido(3, 13, 14, 2, 0, 1, 1);
+//        app.insertPartido(4, 7, 15, 2, 0, 1, 1);
+//        app.insertPartido(5, 12, 6, 2, 1, 2, 1);
+//        app.insertPartido(6, 7, 13, 2, 1, 2, 1);
+//        app.insertPartido(7, 7, 12, 2, 1, 3, 1);
+        
+        //Cervezas Victoria
+//        app.insertPartido(8, 1, 16, 2, 0, 1, 2);
+//        app.insertPartido(9, 3, 17, 2, 0, 1, 2);
+//        app.insertPartido(10, 18, 10, 2, 1, 1, 2);
+//        app.insertPartido(11, 8, 11, 2, 0, 1, 2);
+//        app.insertPartido(12, 1, 3, 2, 0, 2, 2);
+//        app.insertPartido(13, 8, 18, 2, 0, 2, 2);
+//        app.insertPartido(14, 1, 8, 2, 0, 3, 2);
+        
+        //Menorca
+//        app.insertPartido(15, 2, 19, 2, 0, 1, 3);
+//        app.insertPartido(16, 5, 20, 2, 0, 1, 3);
+//        app.insertPartido(17, 11, 9, 2, 1, 1, 3);
+//        app.insertPartido(18, 4, 21, 2, 0, 1, 3);
+//        app.insertPartido(19, 2, 5, 2, 0, 2, 3);
+//        app.insertPartido(20, 4, 11, 2, 0, 2, 3);
+//        app.insertPartido(21, 2, 4, 2, 0, 3, 3);
+        //Cascais
+//        app.insertPartido(22, 1, 20, 2, 0, 1, 4);
+//        app.insertPartido(23, 22, 6, 2, 0, 1, 4);
+//        app.insertPartido(24, 10, 13, 2, 0, 1, 4);
+//        app.insertPartido(25, 3, 21, 2, 1, 1, 4);
+//        app.insertPartido(26, 1, 22, 2, 0, 2, 4);
+//        app.insertPartido(27, 10, 3, 2, 0, 2, 4);
+//        app.insertPartido(28, 1, 10, 2, 1, 3, 4);
+        
+        //Buenos Aires
+        app.insertPartido(29, 2, 7, 2, 0, 1, 5);
+        app.insertPartido(30, 6, 18, 2, 1, 1, 5);
+        app.insertPartido(31, 12, 9, 2, 0, 1, 5);
+        app.insertPartido(32, 3, 23, 2, 0, 1, 5);
+        app.insertPartido(33, 6, 2, 2, 0, 2, 5);
+        app.insertPartido(34, 3, 12, 2, 0, 2, 5);
+        app.insertPartido(35, 3, 6, 2, 0, 3, 5);
     }
+  
     
 
 }

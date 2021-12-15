@@ -43,6 +43,6 @@ public class CrearBD
      */
     public static void main(String[] args)
     {
-        crearNuevaBD("bdproyecto.db");
+        crearNuevaBD("basededatos.db");
     }
 }

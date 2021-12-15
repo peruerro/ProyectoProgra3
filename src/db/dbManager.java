@@ -22,15 +22,15 @@ public class dbManager {
 
 	        
 	        String sql = "CREATE TABLE IF NOT EXISTS Jugador (\n"
-	                + "    idJugador int not null primary key ,\n"
+	                + "    idJugador interger not null primary key ,\n"
 	        		+ "    nombre text not null,\n"
 	                + "    edad interger not null,\n"
 	                + "    nacionalidad text not null,\n"
 	                + "    pala text not null,\n"
 	                + "    manoHabil text not null,\n"
 	                + "    posicion text not null, \n"
-	                + "    puntosRanking int not null, \n"
-	                + "    titulos text not null"
+	                + "    puntosRanking interger not null, \n"
+	                + "    idPartido interger references Partido(idPartido) on delete cascade \n"
 	          
 	                + ");";
 
@@ -57,13 +57,14 @@ public class dbManager {
 	        String url = "jdbc:sqlite:" + name;
 
 	        
-	        String sql = "CREATE TABLE IF NOT EXISTS Partido2 (\n"
+	        String sql = "CREATE TABLE IF NOT EXISTS Partido (\n"
 	                + "    idPartido interger primary key not null ,\n"
-	                + "    ganador Jugador not null,\n"
-	                + "    perdedor text not null,\n"
+	                + "    idGanador interger references Jugador(idJugador) on delete cascade,\n"
+	                + "    idPerdedor text references Jugador (idPerdedor)on delete cascade,\n"
 	                + "    resultGanador interger not null,\n"
 	                + "    resultPerdedor interger not null,\n"
-	                + "    fase text not null \n"          
+	                + "    idfase interger references Fase(idFase) on delete cascade , \n"  
+	                + "	   idTorneo interger references Torneo(idTorneo)on delete cascade \n"	
 	                + ");";
 
 	        try
@@ -138,6 +139,32 @@ public class dbManager {
 	        	e.printStackTrace();
 	        }
 	    }
+	    public static void crearTablaTorneo(){
+	        
+	        String name = "basededatos.db";
+	        String url = "jdbc:sqlite:" + name;
+
+	        
+	        String sql = "CREATE TABLE IF NOT EXISTS Torneo (\n"
+	                + "    idTorneo interger primary key not null ,\n"
+	                + "    nombre text not null,\n"
+	                + "    idGanador interger references Partido(idGanador)on delete cascade \n"   
+	                + ");";
+
+	        try
+	                (
+	                        Connection conn = DriverManager.getConnection(url);
+	                        Statement stmt = conn.createStatement()
+	                )
+	        {
+	            // create a new table
+	            stmt.execute(sql);
+	        } catch (SQLException e)
+	        {
+	        	e.printStackTrace();
+	        }
+	    }
+	    
 
 	    /**
 	     * Metodo principal para poder utilizar el metodo crearTablaJugador
@@ -145,10 +172,11 @@ public class dbManager {
 	     */
 	    public static void main(String[] args)
 	    {
-	        //crearTablaJugador();
-	    	//crearTablaPartido();
-	    	//crearTablaUsuario();
-	    	//crearTablaFase();
+	        crearTablaJugador();
+	    	crearTablaPartido();
+	    	crearTablaUsuario();
+	    	crearTablaFase();
+	    	crearTablaTorneo();
 	    	
 	    }
 
