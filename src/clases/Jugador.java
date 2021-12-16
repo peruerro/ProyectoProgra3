@@ -48,15 +48,15 @@ public class Jugador extends Persona{
 	 */
 	
 	
-	public Jugador(String nombre, int edad, String nacionalidad, String pala, String manoHabil,
-			String posicion, int idJugador, int puntosRanking, ArrayList <Torneo> titulos) {
+	public Jugador(int idJugador,String nombre, int edad, String nacionalidad, String pala, String manoHabil,
+			String posicion, int puntosRanking) {
 		super(nombre, edad, nacionalidad);
 		this.pala = pala;
 		this.manoHabil = manoHabil;
 		this.posicion = posicion;
 		this.idJugador=idJugador;
 		this.puntosRanking=puntosRanking;
-		this.titulos=titulos;
+		
 	}
 	/**
 	 * Devuelve la pala
@@ -105,6 +105,11 @@ public class Jugador extends Persona{
 	public void setTitulos(ArrayList<Torneo> titulos) {
 		this.titulos = titulos;
 	}
+	@Override
+	public String toString() {
+		return getNombre()+" ; "+getEdad()+" años ; "+getNacionalidad()+" ; "+pala+" ; "+manoHabil+" ; "+posicion+" ; "+puntosRanking+" ; "+titulos;
+	}
+	
 	/**
 	 * Metodo para sumar los titulos de todos los jugadores
 	 * @return el numero de titulos totales
@@ -119,6 +124,11 @@ public class Jugador extends Persona{
 //		return titulos;
 //	}
 	
+//	public static void sumarPuntos(){
+//		ArrayList<Jugador> j =SelectData.seleccionarJugador();
+//		
+//	}
+//	
 }
 	
 

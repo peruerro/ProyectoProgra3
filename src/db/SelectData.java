@@ -20,7 +20,7 @@ public class SelectData {
     private static Connection connect()
     {
         
-        String name = "basededatos";
+        String name = "basededatos.db";
         String url = "jdbc:sqlite:" + name;
         Connection conn = null;
 
@@ -60,9 +60,9 @@ public class SelectData {
         }
 		return usuarios;
     }
-    public static ArrayList<Jugador> seleccionarJugador()
+    public static ArrayList<Jugador> seleccionarJugador(String sql)
     {
-        String sql = "SELECT id Jugador,nombre,edad, nacionalidad, pala, manoHabil, posicion, puntosRanking, titulos FROM Jugador";
+        
         ArrayList<Jugador> jugadores=new ArrayList<Jugador>();
         try
                 (
@@ -73,7 +73,7 @@ public class SelectData {
         {
         	ResultSet rs=stmt.executeQuery(sql);
        while (rs.next()){
-    	   Jugador j= new Jugador(rs.getInt("idJugador"),rs.getString("nombre"),rs.getInt("edad"),rs.getString("nacionalidad"),rs.getString("pala"),rs.getString("manoHabil"),rs.getString("posicion"),rs.getInt("puntosRanking"),rs.getObject("titulos"));
+    	   Jugador j= new Jugador(rs.getInt("idJugador"),rs.getString("nombre"),rs.getInt("edad"),rs.getString("nacionalidad"),rs.getString("pala"),rs.getString("manoHabil"),rs.getString("posicion"),rs.getInt("puntosRanking"));
     	   jugadores.add(j);
        }
         } catch (SQLException e)

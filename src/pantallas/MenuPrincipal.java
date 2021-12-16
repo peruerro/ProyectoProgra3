@@ -12,8 +12,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import javax.swing.JButton;
 /**
  * El menu principal donde se podra acceder al resto de funcionalidades de la app
  * @author Peru Erro Arrue
@@ -53,7 +57,7 @@ public class MenuPrincipal extends JFrame {
 		
 		
 		JList list = new JList();
-		list.setBounds(15, 96, 106, 84);
+		list.setBounds(15, 96, 117, 106);
 		contentPane.add(list);
 		
 		
@@ -86,13 +90,38 @@ public class MenuPrincipal extends JFrame {
 		
 		JLabel lblPrximosTorneos = new JLabel("PR\u00D3XIMOS TORNEOS");
 		lblPrximosTorneos.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblPrximosTorneos.setBounds(25, 218, 221, 20);
+		lblPrximosTorneos.setBounds(25, 262, 221, 20);
 		contentPane.add(lblPrximosTorneos);
 		
 		JList list_1 = new JList();
-		list_1.setBounds(45, 254, 192, 84);
+		list_1.setBounds(25, 298, 192, 84);
 		contentPane.add(list_1);
 		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(147, 173, 115, 29);
+		contentPane.add(btnAceptar);
+		btnAceptar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if (list.getSelectedValue().equals("Noticias")){
+					Noticias pantalla=new Noticias();
+					pantalla.setVisible(true);
+				}
+				if(list.getSelectedValue().equals("Jugadores")){
+					Jugadores pantalla=new Jugadores();
+					pantalla.setVisible(true);
+				}if (list.getSelectedValue().equals("Clasificacion")){
+					Clasificacion pantalla=new Clasificacion();
+					pantalla.setVisible(true);
+				}if (list.getSelectedValue().equals("Torneos")){
+					Torneos pantalla=new Torneos();
+					pantalla.setVisible(true);
+				}MenuPrincipal.this.dispose();
+				
+			}
+		
+		
+		
+		});
 		
 	}
 }
