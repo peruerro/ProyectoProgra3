@@ -124,11 +124,10 @@ public class Jugador extends Persona{
 //		return titulos;
 //	}
 	
-//	public static void sumarPuntos(){
-//		ArrayList<Jugador> j =SelectData.seleccionarJugador();
-//		
-//	}
-//	
+	public void sumarPuntos(int p){
+		setPuntosRanking(p+getPuntosRanking());
+	
+	}
 }
 	
 
