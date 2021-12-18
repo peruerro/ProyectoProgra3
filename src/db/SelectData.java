@@ -7,7 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import clases.Fase;
 import clases.Jugador;
+import clases.Partido;
+import clases.Torneo;
 import clases.Usuario;
 
 
@@ -81,6 +84,72 @@ public class SelectData {
             System.out.println(e.getMessage());
         }
 		return jugadores;
+    }
+    public static ArrayList<Torneo> seleccionarTorneo(String sql)
+    {
+        
+        ArrayList<Torneo> torneos=new ArrayList<Torneo>();
+        try
+                (
+                        Connection conn = connect();
+                        Statement stmt  = conn.createStatement();
+                       
+                )
+        {
+        	ResultSet rs=stmt.executeQuery(sql);
+       while (rs.next()){
+    	   Torneo t= new Torneo(rs.getInt("idTorneo"),rs.getString("nombre"),rs.getInt("idGanador"));
+    	   torneos.add(t);
+       }
+        } catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+		return torneos;
+    }
+    public static ArrayList<Fase> seleccionarFase(String sql)
+    {
+        
+        ArrayList<Fase> fases=new ArrayList<Fase>();
+        try
+                (
+                        Connection conn = connect();
+                        Statement stmt  = conn.createStatement();
+                       
+                )
+        {
+        	ResultSet rs=stmt.executeQuery(sql);
+       while (rs.next()){
+    	   Fase f= new Fase(rs.getInt("idFase"),rs.getString("nombre"),rs.getInt("puntosGanador"),rs.getInt("puntosPerdedor"));
+    	   fases.add(f);
+       }
+        } catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+		return fases;
+    }
+    public static ArrayList<Partido> seleccionarPartido(String sql)
+    {
+        
+        ArrayList<Partido> partidos=new ArrayList<Partido>();
+        try
+                (
+                        Connection conn = connect();
+                        Statement stmt  = conn.createStatement();
+                       
+                )
+        {
+        	ResultSet rs=stmt.executeQuery(sql);
+       while (rs.next()){
+    	   Partido p= new Partido(rs.getInt("idPartido"),rs.getInt("idGanador"),rs.getInt("idPerdedor"),rs.getInt("resultGanador"),rs.getInt("resultPerdedor"),rs.getInt("idFase"),rs.getInt("idTorneo"));
+    	   partidos.add(p);
+       }
+        } catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+		return partidos;
     }
     /**
      * Metodo principal para probar que funciona la select

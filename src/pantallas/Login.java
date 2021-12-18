@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import clases.Jugador;
 import clases.Usuario;
 import db.SelectData;
 
@@ -112,7 +113,7 @@ public class Login extends JFrame {
 						
 						
 					}else if(nombreUsuario.equals(a.getNombreUsuario())&&contrasenya.equals(a.getContrasenya())&&(a.getAdmin())==1){
-						usuarioValido=true;
+						
 						eresEditor=true;
 						
 					}
@@ -121,12 +122,14 @@ public class Login extends JFrame {
 					MenuPrincipal pantalla=new MenuPrincipal();
 					pantalla.setVisible(true);	
 					dispose();
-				}else if(usuarioValido && eresEditor){
+				}else if(eresEditor){
 					JOptionPane.showMessageDialog(Login.this, "Bienvenido");
 					MenuAdmin pantalla=new MenuAdmin();
 					pantalla.setVisible(true);
+					dispose();
 				}else{
 					JOptionPane.showMessageDialog(Login.this, "Usuario o contraseña incorrecta");
+					
 				}
 				
 			   

@@ -1,15 +1,17 @@
 package clases;
 
+import java.util.Arrays;
+
 public class Torneo {
 	private int idTorneo;
 	private String nombreTorneo;
 	private Partido [] partidos;
-	private Jugador ganador;
-	public Torneo(int idTorneo, String nombreTorneo, Partido[] partidos, Jugador ganador) {
+	private int ganador;
+	public Torneo(int idTorneo, String nombreTorneo,  int ganador) {
 		super();
 		this.idTorneo = idTorneo;
 		this.nombreTorneo = nombreTorneo;
-		this.partidos = partidos;
+		
 		this.ganador = ganador;
 	}
 	public int getIdTorneo() {
@@ -30,11 +32,16 @@ public class Torneo {
 	public void setPartidos(Partido[] partidos) {
 		this.partidos = partidos;
 	}
-	public Jugador getGanador() {
+	public int getGanador() {
 		return ganador;
 	}
-	public void setGanador(Jugador ganador) {
+	public void setGanador(int ganador) {
 		this.ganador = ganador;
+	}
+	@Override
+	public String toString() {
+		return "Torneo [idTorneo=" + idTorneo + ", nombreTorneo=" + nombreTorneo + ", partidos="
+				+ Arrays.toString(partidos) + ", ganador=" + ganador + "]";
 	}
 	
 	

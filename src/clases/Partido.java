@@ -16,6 +16,9 @@ public class Partido {
 		this.puntosPerdedor = puntosPerdedor;
 		this.fase = fase;
 	}
+	public Partido(int int1, int int2, int int3, int int4, int int5, int int6, int int7) {
+		// TODO Auto-generated constructor stub
+	}
 	public int getIdPartido() {
 		return idPartido;
 	}

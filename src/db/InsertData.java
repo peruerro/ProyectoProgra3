@@ -227,6 +227,7 @@ public class InsertData
 //        app.insertTorneo(3, "Estrella Damm Menorca Open",2);
 //        app.insertTorneo(4, "Cascais Padel Master",1);
 //        app.insertTorneo(5, "Buenos Aires Pádel Master",3);
+        app.insertTorneo(6, "Estrella Damm Master Final", 0);
         //app.insertPartido(idPartido, idGanador, idPerdedor, resultGanador, resultPerdedor, idfase, idTorneo);
         //Torneo Adeslas Madrid Open
 //        app.insertPartido(1,12,2,2,1,1,1);
@@ -264,13 +265,13 @@ public class InsertData
 //        app.insertPartido(28, 1, 10, 2, 1, 3, 4);
         
         //Buenos Aires
-        app.insertPartido(29, 2, 7, 2, 0, 1, 5);
-        app.insertPartido(30, 6, 18, 2, 1, 1, 5);
-        app.insertPartido(31, 12, 9, 2, 0, 1, 5);
-        app.insertPartido(32, 3, 23, 2, 0, 1, 5);
-        app.insertPartido(33, 6, 2, 2, 0, 2, 5);
-        app.insertPartido(34, 3, 12, 2, 0, 2, 5);
-        app.insertPartido(35, 3, 6, 2, 0, 3, 5);
+//        app.insertPartido(29, 2, 7, 2, 0, 1, 5);
+//        app.insertPartido(30, 6, 18, 2, 1, 1, 5);
+//        app.insertPartido(31, 12, 9, 2, 0, 1, 5);
+//        app.insertPartido(32, 3, 23, 2, 0, 1, 5);
+//        app.insertPartido(33, 6, 2, 2, 0, 2, 5);
+//        app.insertPartido(34, 3, 12, 2, 0, 2, 5);
+//        app.insertPartido(35, 3, 6, 2, 0, 3, 5);
     }
   
     
