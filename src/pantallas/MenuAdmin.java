@@ -75,17 +75,17 @@ public class MenuAdmin extends JFrame {
 		btnAceptar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if (list.getSelectedValue().equals("Añadir noticias")){
-					AñadirNoticias pantalla=new AñadirNoticias();
+					AnadirNoticias pantalla=new AnadirNoticias();
 					pantalla.setVisible(true);
 				}
 				if(list.getSelectedValue().equals("Añadir partidos")){
-					AñadirPartidos pantalla=new AñadirPartidos();
+					AnadirPartidos pantalla=new AnadirPartidos();
 					pantalla.setVisible(true);
 				}if (list.getSelectedValue().equals("Añadir jugadores")){
-					AñadirJugadores pantalla=new AñadirJugadores();
+					AnadirJugadores pantalla=new AnadirJugadores();
 					pantalla.setVisible(true);
 				}if (list.getSelectedValue().equals("Añadir torneos")){
-					AñadirTorneos pantalla=new AñadirTorneos();
+					AnadirTorneos pantalla=new AnadirTorneos();
 					pantalla.setVisible(true);
 				}MenuAdmin.this.dispose();
 				

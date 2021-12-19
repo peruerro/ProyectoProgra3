@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 import clases.Jugador;
 import clases.Usuario;
+import db.DeleteData;
 import db.SelectData;
 
 import javax.swing.JLabel;
@@ -101,6 +102,7 @@ public class Login extends JFrame {
 			 * Acciona el boton Entrar. Cuando es pulsado se comprueba si el usuario se encuentra en la BD
 			 */
 			public void actionPerformed(ActionEvent e) {
+				
 				boolean UsuarioValido=false;
 				ArrayList<Usuario> u=SelectData.seleccionarUsuario();
 				String nombreUsuario=textField.getText();

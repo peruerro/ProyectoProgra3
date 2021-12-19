@@ -13,7 +13,9 @@ import javax.swing.border.EmptyBorder;
 
 import clases.Fase;
 import clases.Jugador;
+import clases.Partido;
 import clases.Torneo;
+import db.InsertData;
 import db.SelectData;
 import db.UpdateData;
 
@@ -21,7 +23,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
+import javax.swing.JSpinner;
+import javax.swing.JLabel;
 
 public class AnadirPartidos extends JFrame {
 
@@ -42,6 +47,54 @@ public class AnadirPartidos extends JFrame {
 			}
 		});
 	}
+	public static int devolverIdGanador(JList list){
+		String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
+		ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
+		int idGanador=0;
+		for(Jugador jug:listaJug){
+			if(list.getSelectedValue().equals(jug.getNombre())){
+				idGanador=jug.getIdJugador();
+				
+			}
+		}
+		return idGanador;
+	}
+	public static int devolverIdPerdedor(JList list){
+		String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
+		ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
+		int idPerdedor=0;
+		for(Jugador jug:listaJug){
+			if(list.getSelectedValue().equals(jug.getNombre())){
+				idPerdedor=jug.getIdJugador();
+				
+			}
+		}
+		return idPerdedor;
+	}
+	public static int devolverIdTorneo(JComboBox combo){
+		String lista="SELECT idTorneo, nombre, idGanador from Torneo";
+		ArrayList <Torneo> listaTor =SelectData.seleccionarTorneo(lista);
+		int idTorneo=0;
+		for(Torneo tor:listaTor){
+			if(combo.getSelectedItem().toString().equals(tor.getNombreTorneo())){
+				idTorneo=tor.getIdTorneo();
+			}
+		}
+
+		return idTorneo;
+	}
+	public static int devolverIdFase(JComboBox combo){
+		String lista="SELECT idFase, nombre, puntosGanador, puntosPerdedor from Fase";
+		ArrayList <Fase> listaFas =SelectData.seleccionarFase(lista);
+		int idFase=0;
+		for(Fase fas:listaFas){
+			if(combo.getSelectedItem().toString().equals(fas.getNombre())){
+				idFase=fas.getIdFase();
+			}
+		}
+
+		return idFase;
+	}
 
 	/**
 	 * Create the frame.
@@ -50,14 +103,16 @@ public class AnadirPartidos extends JFrame {
 		getContentPane().setLayout(null);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 611, 674);
+		setBounds(100, 100, 620, 687);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
 
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(65, 97, 406, 60);
+		comboBox.setBounds(65, 57, 406, 60);
 		DefaultComboBoxModel<String>model=new DefaultComboBoxModel<String>();
 		String lista="SELECT idTorneo, nombre, idGanador from Torneo";
 		ArrayList <Torneo> listaTor=SelectData.seleccionarTorneo(lista);
@@ -68,7 +123,7 @@ public class AnadirPartidos extends JFrame {
 		contentPane.add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(65, 176, 406, 43);
+		comboBox_1.setBounds(65, 148, 406, 43);
 		DefaultComboBoxModel<String>model2=new DefaultComboBoxModel<String>();
 		String lista2="SELECT idFase, nombre, puntosGanador, puntosPerdedor from Fase";
 		ArrayList <Fase> listaFas=SelectData.seleccionarFase(lista2);
@@ -108,12 +163,46 @@ public class AnadirPartidos extends JFrame {
 		scroll2.setBounds(319, 274, 221, 208);
 		contentPane.add(scroll2);
 		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(187, 232, 32, 26);
+		contentPane.add(spinner);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setBounds(476, 232, 32, 26);
+		contentPane.add(spinner_1);
+		
+		JLabel lblResultadoGanador = new JLabel("Resultado ganador:");
+		lblResultadoGanador.setBounds(45, 238, 138, 20);
+		contentPane.add(lblResultadoGanador);
+		
+		JLabel lblResultadoPerdedor = new JLabel("Resultado Perdedor:");
+		lblResultadoPerdedor.setBounds(319, 235, 152, 20);
+		contentPane.add(lblResultadoPerdedor);
+		
+		
+		
 		JButton btnAadirPartido = new JButton("A\u00F1adir Partido");
 		btnAadirPartido.setBounds(400, 560, 152, 29);
 		btnAadirPartido.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				InsertData insertar=new InsertData();
+				
 				String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
 				ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
+				String lista1="SELECT idPartido, idGanador, idPerdedor, resultGanador, resultPerdedor, idFase, idTorneo from Partido";
+				ArrayList <Partido> listaPar=SelectData.seleccionarPartido(lista1);
+				int count=(int) listaPar.stream().count();
+				int idPartido=count+1;
+				int idGanador=devolverIdGanador(list);
+				int idPerdedor=devolverIdPerdedor(list_1);
+				int idTorneo=devolverIdTorneo(comboBox);
+				int idFase=devolverIdFase(comboBox_1);
+				int resultGan=(int) spinner.getValue();
+				int resultPer=(int) spinner_1.getValue();
+				insertar.insertPartido(idPartido, idGanador, idPerdedor, resultGan, resultPer, idFase, idTorneo);
+				
+				JOptionPane.showMessageDialog(AnadirPartidos.this, "Partido añadido con exito");
+			
 				if(comboBox_1.getSelectedItem().toString().equals("Cuartos de Final")){
 					for(Jugador j:listaJug){
 						if (j.getNombre().equals(list.getSelectedValue())){
@@ -127,7 +216,6 @@ public class AnadirPartidos extends JFrame {
 						if (j.getNombre().equals(list_1.getSelectedValue())){
 							j.sumarPuntos(310);
 							int puntosActual=j.getPuntosRanking();
-							System.out.println(puntosActual);
 							UpdateData.updateJugador(puntosActual,j.getIdJugador());
 							
 						}
@@ -145,7 +233,6 @@ public class AnadirPartidos extends JFrame {
 						if (j.getNombre().equals(list_1.getSelectedValue())){
 							j.sumarPuntos(610);
 							int puntosActual=j.getPuntosRanking();
-							System.out.println(puntosActual);
 							UpdateData.updateJugador(puntosActual,j.getIdJugador());
 						}
 					}
@@ -162,7 +249,6 @@ public class AnadirPartidos extends JFrame {
 						if (j.getNombre().equals(list_1.getSelectedValue())){
 							j.sumarPuntos(1020);
 							int puntosActual=j.getPuntosRanking();
-							System.out.println(puntosActual);
 							UpdateData.updateJugador(puntosActual,j.getIdJugador());
 						}
 					}
@@ -171,6 +257,18 @@ public class AnadirPartidos extends JFrame {
 			}
 		});
 		contentPane.add(btnAadirPartido);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setBounds(425, 602, 115, 29);
+		btnVolver.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				MenuAdmin pantalla=new MenuAdmin();
+				pantalla.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnVolver);
+		
 		
 		
 		

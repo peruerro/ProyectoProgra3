@@ -48,7 +48,7 @@ public class Jugadores extends JFrame {
 	 */
 	public Jugadores() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 629, 419);
+		setBounds(100, 100, 930, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -59,22 +59,22 @@ public class Jugadores extends JFrame {
 		contentPane.add(lblTop);
 		
 		JList list = new JList();
-		list.setBounds(15, 113, 234, 158);
-		DefaultListModel<Jugador>model=new DefaultListModel<Jugador>();
-		String lista="SELECT idJugador, nombre, edad, nacionalidad,pala, manoHabil, posicion, puntosRanking from Jugador";
+		list.setBounds(15, 113, 514, 203);
+		DefaultListModel<String>model=new DefaultListModel<String>();
+		String lista="SELECT idJugador, nombre, edad, nacionalidad,pala, manoHabil, posicion, puntosRanking from Jugador order by puntosRanking desc limit 10";
 		ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
 		for(Jugador j: listaJug){
-			model.addElement(j);
+			model.addElement(j.getNombre()+" ; "+j.getEdad()+" años ;"+j.getNacionalidad()+" ; "+j.getPala()+" ; "+j.getManoHabil()+" ; "+j.getPosicion()+" ; "+j.getPuntosRanking()+" puntos");
 		}
 		list.setModel(model);
 		contentPane.add(list);
 		
 		JLabel lblFiltrarJugadores = new JLabel("Filtrar jugadores:");
-		lblFiltrarJugadores.setBounds(367, 57, 130, 20);
+		lblFiltrarJugadores.setBounds(651, 57, 130, 20);
 		contentPane.add(lblFiltrarJugadores);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(360, 111, 202, 104);
+		comboBox.setBounds(654, 113, 202, 104);
 		DefaultComboBoxModel <String> model3 = new DefaultComboBoxModel<String>();
 		String a="Filtrar por edad";
 		String b="Filtrar por posicion";
@@ -88,7 +88,7 @@ public class Jugadores extends JFrame {
 		contentPane.add(comboBox);
 		
 		JButton btnFiltrar = new JButton("Filtrar");
-		btnFiltrar.setBounds(448, 230, 115, 29);
+		btnFiltrar.setBounds(739, 233, 115, 29);
 		btnFiltrar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(comboBox.getSelectedItem().toString().equals("Filtrar por edad")){

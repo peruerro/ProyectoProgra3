@@ -6,17 +6,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import clases.Jugador;
+import clases.Torneo;
+import db.InsertData;
+import db.SelectData;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JSpinner;
 
 public class AnadirJugadores extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
@@ -43,7 +54,7 @@ public class AnadirJugadores extends JFrame {
 	 */
 	public AnadirJugadores() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 426, 629);
+		setBounds(100, 100, 415, 662);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,17 +62,8 @@ public class AnadirJugadores extends JFrame {
 		
 		JLabel lblAadirJugador = new JLabel("A\u00F1adir Jugador");
 		lblAadirJugador.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblAadirJugador.setBounds(25, 32, 167, 25);
+		lblAadirJugador.setBounds(25, 84, 167, 25);
 		contentPane.add(lblAadirJugador);
-		
-		JLabel lblIdjugador = new JLabel("IdJugador:");
-		lblIdjugador.setBounds(25, 73, 87, 20);
-		contentPane.add(lblIdjugador);
-		
-		textField = new JTextField();
-		textField.setBounds(25, 100, 146, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(25, 142, 69, 20);
@@ -76,10 +78,9 @@ public class AnadirJugadores extends JFrame {
 		lblEdad.setBounds(25, 212, 69, 20);
 		contentPane.add(lblEdad);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(25, 248, 146, 26);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(25, 248, 32, 26);
+		contentPane.add(spinner);
 		
 		JLabel lblNacionalidad = new JLabel("Nacionalidad:");
 		lblNacionalidad.setBounds(25, 290, 112, 20);
@@ -119,6 +120,38 @@ public class AnadirJugadores extends JFrame {
 		
 		JButton btnAadirJugador = new JButton("A\u00F1adir Jugador");
 		btnAadirJugador.setBounds(231, 517, 146, 29);
+		btnAadirJugador.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				String lista="Select idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
+				ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
+				int count=(int) listaJug.stream().count();
+				int idJugador=count+1;
+				String nombre=textField_1.getText();
+				int edad=(int) spinner.getValue();
+				String nacionalidad=textField_3.getText();
+				String pala=textField_4.getText();
+				String manoHabil=textField_5.getText();
+				String posicion=textField_6.getText();
+				int puntosRanking=0;
+				InsertData insertar=new InsertData();
+				insertar.insertJugador(idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking);
+				JOptionPane.showMessageDialog(AnadirJugadores.this, "Jugador añadido con exito");
+				
+			}
+		});
 		contentPane.add(btnAadirJugador);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setBounds(241, 561, 115, 29);
+		btnVolver.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				MenuAdmin pantalla=new MenuAdmin();
+				pantalla.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnVolver);
+		
+		
 	}
 }
