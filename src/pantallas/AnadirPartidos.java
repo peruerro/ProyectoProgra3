@@ -257,6 +257,9 @@ public class AnadirPartidos extends JFrame {
 							j.sumarPuntos(610);
 							int puntosActual=j.getPuntosRanking();
 							UpdateData.updateJugador(puntosActual,j.getIdJugador());
+						}else{
+							JOptionPane.showMessageDialog(AnadirPartidos.this, "Selecciona un jugador");
+
 						}
 					}
 				}else if (comboBox_1.getSelectedItem().toString().equals("Final")){
@@ -266,6 +269,9 @@ public class AnadirPartidos extends JFrame {
 							j1.sumarPuntos(1700);
 							int puntosActual=j1.getPuntosRanking();
 							UpdateData.updateJugador(puntosActual,j1.getIdJugador());
+						}else{
+							JOptionPane.showMessageDialog(AnadirPartidos.this, "Selecciona un jugador");
+
 						}
 					}
 					for(Jugador j:listaJug){
@@ -275,6 +281,8 @@ public class AnadirPartidos extends JFrame {
 							UpdateData.updateJugador(puntosActual,j.getIdJugador());
 						}
 					}
+				}else{
+					JOptionPane.showMessageDialog(AnadirPartidos.this, "Selecciona una fase");
 				}
 				
 			}

@@ -58,7 +58,7 @@ public class Clasificacion extends JFrame {
 		list.setBounds(54, 116, 413, 273);
 		
 		DefaultListModel <String> model=new DefaultListModel<String>();
-		String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador order by puntosRanking";
+		String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador order by puntosRanking desc";
 		ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
 		int contador=0;
 		for(Jugador j:listaJug){
