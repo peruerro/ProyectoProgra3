@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DeleteData {
+	/**
+	 * Metodo para conectar con la base de datos
+	 * @return la conexion
+	 */
 	 private static Connection connect()
 	    {
 	        String url = "jdbc:sqlite:basededatos.db";
@@ -19,6 +23,10 @@ public class DeleteData {
 	        }
 	        return conn;
 	    }
+	 /**
+	  * Metodo para borrar un jugador pasandole su id
+	  * @param idJugador el id del jugador
+	  */
 	 public static void deleteJugador(int idJugador){
 	        String sql = "DELETE FROM jugador "
 	        		+ "WHERE IDJUGADOR=?; ";

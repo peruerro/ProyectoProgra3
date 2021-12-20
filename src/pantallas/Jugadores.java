@@ -79,7 +79,7 @@ public class Jugadores extends JFrame {
 		String a="Filtrar por edad";
 		String b="Filtrar por posicion";
 		String c="Filtrar por nacionalidad";
-		String d="Filtrar por pala";
+		String d="Filtrar por mano habil";
 		model3.addElement(a);
 		model3.addElement(b);
 		model3.addElement(c);
@@ -109,6 +109,25 @@ public class Jugadores extends JFrame {
 					lista.setBounds(34, 169, 406, 53);
 					contentPane.add(lista);
 					JOptionPane.showMessageDialog(Jugadores.this, lista,"Jugadores de "+edad+" años",-1);
+	
+				}if(comboBox.getSelectedItem().toString().equals("Filtrar por nacionalidad")){
+					String nacionalidad= JOptionPane.showInputDialog(Jugadores.this,"Introduce una nacionalidad:");
+					String sql="Select idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
+					ArrayList<Jugador> j= SelectData.seleccionarJugador(sql);
+					JList lista = new JList();
+					DefaultListModel <Jugador> model=new DefaultListModel <Jugador>();
+					for (Jugador a:j){
+						String nacion=(a.getNacionalidad());
+						
+						if(nacionalidad.equals(nacion)){
+							model.addElement(a);
+							lista.setModel(model);		
+						}
+					
+					}
+					lista.setBounds(34, 169, 406, 53);
+					contentPane.add(lista);
+					JOptionPane.showMessageDialog(Jugadores.this, lista,"Jugadores de "+nacionalidad,-1);
 	
 				}if(comboBox.getSelectedItem().toString().equals("Filtrar por posicion")){
 					String[] botones = {"Revés", "Derecha"};
@@ -140,10 +159,51 @@ public class Jugadores extends JFrame {
 						JOptionPane.showMessageDialog(Jugadores.this, listaDer,"Derecha",-1);
 				
 					}
+				}if(comboBox.getSelectedItem().toString().equals("Filtrar por mano habil")){
+					String[] botones = {"Diestra", "Izquierda"};
+					int ventanaPosiciones = JOptionPane.showOptionDialog(Jugadores.this, "Selecciona la mano habil por la que quieres buscar", "Mano Habil" , JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null,botones, botones[0]);
+					String sql="Select idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
+					ArrayList<Jugador> j= SelectData.seleccionarJugador(sql);
+					if(ventanaPosiciones==0){
+						JList listaDies = new JList();
+						DefaultListModel <Jugador> model=new DefaultListModel <Jugador>();
+						for(Jugador a:j){
+							if(botones[0].equals(a.getManoHabil())){
+								model.addElement(a);
+								listaDies.setModel(model);		
+							}
+						}listaDies.setBounds(34, 169, 406, 53);
+						contentPane.add(listaDies);
+						JOptionPane.showMessageDialog(Jugadores.this, listaDies,"Diestra",-1);
+						
+					}if(ventanaPosiciones==1){
+						JList listaIzq = new JList();
+						DefaultListModel <Jugador> model=new DefaultListModel <Jugador>();
+						for(Jugador a:j){
+							if(botones[1].equals(a.getManoHabil())){
+								model.addElement(a);
+								listaIzq.setModel(model);		
+							}
+						}listaIzq.setBounds(34, 169, 406, 53);
+						contentPane.add(listaIzq);
+						JOptionPane.showMessageDialog(Jugadores.this, listaIzq,"Izquierda",-1);
+				
+					}
 				}
 			}
 		});
 		contentPane.add(btnFiltrar);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setBounds(767, 342, 115, 29);
+		btnVolver.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				MenuPrincipal pantalla=new MenuPrincipal();
+				pantalla.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnVolver);
 		
 		
 		

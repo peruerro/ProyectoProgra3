@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
+import java.awt.Font;
 
 /**
  * El menu de los administradores donde podran editar datos
@@ -52,25 +53,27 @@ public class MenuAdmin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblAadirDatos = new JLabel("A\u00F1adir datos");
-		lblAadirDatos.setBounds(34, 38, 98, 20);
+		lblAadirDatos.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblAadirDatos.setBounds(34, 38, 141, 20);
 		contentPane.add(lblAadirDatos);
 		
 		JList list = new JList();
-		list.setBounds(34, 84, 187, 142);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		list.setBounds(34, 84, 183, 118);
 		contentPane.add(list);
 		DefaultListModel<String>model=new DefaultListModel<String>();
-		String a=new String("Añadir noticias");
+		
 		String b=new String("Añadir partidos");
 		String c=new String("Añadir jugadores");
 		String d=new String("Añadir torneos");
-		model.addElement(a);
+		
 		model.addElement(b);
 		model.addElement(c);
 		model.addElement(d);
 		list.setModel(model);
 		
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(240, 197, 115, 29);
+		btnAceptar.setBounds(253, 168, 115, 29);
 		contentPane.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {

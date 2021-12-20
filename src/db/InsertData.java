@@ -110,7 +110,16 @@ public class InsertData
     		System.out.println(e.getMessage());
     	}
     }
-    
+    /**
+     * Insertar partidos en la base de datos
+     * @param idPartido el id del partido
+     * @param idGanador el id del ganador
+     * @param idPerdedor el id del perdedor
+     * @param resultGanador el resultado del ganador
+     * @param resultPerdedor el resultado del perdedor
+     * @param idfase el id de la fase
+     * @param idTorneo el id del torneo
+     */
     public void insertPartido(int idPartido, int idGanador, int idPerdedor, int resultGanador, int resultPerdedor, int idfase, int idTorneo)
     {
     	String sql = "INSERT INTO Partido (idPartido, idGanador, idPerdedor, resultGanador, resultPerdedor, idfase, idTorneo) VALUES (?,?,?,?,?,?,?)";

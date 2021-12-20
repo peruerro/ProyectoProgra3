@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import clases.Jugador;
@@ -73,6 +74,10 @@ public class AnadirTorneos extends JFrame {
 		}
 		list.setModel(model);
 		contentPane.add(list);
+		
+		JScrollPane scroll = new JScrollPane(list);
+		scroll.setBounds(28, 179, 221, 208);
+		contentPane.add(scroll);
 		
 		JButton btnAadirTorneo = new JButton("A\u00F1adir torneo");
 		btnAadirTorneo.setBounds(308, 336, 131, 29);

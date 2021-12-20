@@ -20,6 +20,11 @@ public class UpdateData {
 	        }
 	        return conn;
 	    }
+	/**
+	 * Actualiza los puntos ranking de los jugadores
+	 * @param puntosRanking del jugador
+	 * @param idJugador del jugador
+	 */
 	public static void updateJugador(int puntosRanking, int idJugador)
     {
         String sql = "UPDATE  Jugador  set puntosRanking = ? where idJugador=?";

@@ -63,6 +63,11 @@ public class SelectData {
         }
 		return usuarios;
     }
+    /**
+     * Selecciona todo de la tabla Jugador
+     * @param sql un String
+     * @return los jugadores
+     */
     public static ArrayList<Jugador> seleccionarJugador(String sql)
     {
         
@@ -85,6 +90,11 @@ public class SelectData {
         }
 		return jugadores;
     }
+    /**
+     * Selecciona todo de la tabla Torneo
+     * @param sql un String
+     * @return los torneos
+     */
     public static ArrayList<Torneo> seleccionarTorneo(String sql)
     {
         

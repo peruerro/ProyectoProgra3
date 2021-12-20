@@ -7,7 +7,8 @@ public class Partido {
 	private int puntosGanador;
 	private int puntosPerdedor;
 	private Fase fase;
-	public Partido(int idPartido, Jugador ganador, Jugador perdedor, int puntosGanador, int puntosPerdedor, Fase fase) {
+	private int idTorneo;
+	public Partido(int idPartido, Jugador ganador, Jugador perdedor, int puntosGanador, int puntosPerdedor, Fase fase, int idTorneo) {
 		super();
 		this.idPartido = idPartido;
 		this.ganador = ganador;
@@ -15,6 +16,7 @@ public class Partido {
 		this.puntosGanador = puntosGanador;
 		this.puntosPerdedor = puntosPerdedor;
 		this.fase = fase;
+		this.idTorneo=idTorneo;
 	}
 	public Partido(int int1, int int2, int int3, int int4, int int5, int int6, int int7) {
 		// TODO Auto-generated constructor stub
@@ -54,6 +56,17 @@ public class Partido {
 	}
 	public void setFase(Fase fase) {
 		this.fase = fase;
+	}
+	public int getIdTorneo() {
+		return idTorneo;
+	}
+	public void setIdTorneo(int idTorneo) {
+		this.idTorneo = idTorneo;
+	}
+	@Override
+	public String toString() {
+		return "Partido [ganador=" + ganador + ", perdedor=" + perdedor + ", puntosGanador=" + puntosGanador
+				+ ", puntosPerdedor=" + puntosPerdedor + "]";
 	}
 	
 	

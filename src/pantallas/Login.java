@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.Font;
 /**
  * Pantalla de Login donde los usuarios podran entrar o crear un nuevo usuario
  * @author Peru Erro Arrue
@@ -138,6 +139,11 @@ public class Login extends JFrame {
 			}
 		});
 		contentPane.add(btnEntrar);
+		
+		JLabel lblMyWpt = new JLabel("MY WPT");
+		lblMyWpt.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblMyWpt.setBounds(15, 16, 121, 20);
+		contentPane.add(lblMyWpt);
 	
 	}
 }

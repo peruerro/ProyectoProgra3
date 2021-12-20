@@ -49,7 +49,7 @@ public class MenuPrincipal extends JFrame {
 	 */
 	public MenuPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 688, 454);
+		setBounds(100, 100, 461, 353);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,21 +57,22 @@ public class MenuPrincipal extends JFrame {
 		
 		
 		JList list = new JList();
-		list.setBounds(15, 96, 117, 106);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		list.setBounds(25, 108, 207, 118);
 		contentPane.add(list);
 		
 		
 		DefaultListModel<String>model=new DefaultListModel<String>();
-		String a=new String("Noticias");
+		
 		String b=new String("Jugadores");
 		String c=new String("Clasificación");
 		String d=new String("Torneos");
-		String e=new String("Cartas");
-		model.addElement(a);
+		
+		
 		model.addElement(b);
 		model.addElement(c);
 		model.addElement(d);
-		model.addElement(e);
+		
 		list.setModel(model);
 		
 		JLabel lblMen = new JLabel("MEN\u00DA");
@@ -79,26 +80,8 @@ public class MenuPrincipal extends JFrame {
 		lblMen.setBounds(25, 60, 80, 32);
 		contentPane.add(lblMen);
 		
-		JLabel lblNoticias = new JLabel("NOTICIAS");
-		lblNoticias.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNoticias.setBounds(493, 67, 124, 20);
-		contentPane.add(lblNoticias);
-		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(462, 98, 177, 249);
-		contentPane.add(textPane);
-		
-		JLabel lblPrximosTorneos = new JLabel("PR\u00D3XIMOS TORNEOS");
-		lblPrximosTorneos.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblPrximosTorneos.setBounds(25, 262, 221, 20);
-		contentPane.add(lblPrximosTorneos);
-		
-		JList list_1 = new JList();
-		list_1.setBounds(25, 298, 192, 84);
-		contentPane.add(list_1);
-		
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(147, 173, 115, 29);
+		btnAceptar.setBounds(259, 197, 115, 29);
 		contentPane.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -109,7 +92,7 @@ public class MenuPrincipal extends JFrame {
 				if(list.getSelectedValue().equals("Jugadores")){
 					Jugadores pantalla=new Jugadores();
 					pantalla.setVisible(true);
-				}if (list.getSelectedValue().equals("Clasificacion")){
+				}if (list.getSelectedValue().equals("Clasificación")){
 					Clasificacion pantalla=new Clasificacion();
 					pantalla.setVisible(true);
 				}if (list.getSelectedValue().equals("Torneos")){
