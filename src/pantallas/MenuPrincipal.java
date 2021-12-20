@@ -86,8 +86,7 @@ public class MenuPrincipal extends JFrame {
 		btnAceptar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if (list.getSelectedValue().equals("Noticias")){
-					Noticias pantalla=new Noticias();
-					pantalla.setVisible(true);
+					
 				}
 				if(list.getSelectedValue().equals("Jugadores")){
 					Jugadores pantalla=new Jugadores();

@@ -27,7 +27,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JLabel;
-
+/**
+ * Pantalla de Añadir partidos donde se insertan partidos
+ * @author Peru Erro Arrue
+ * @version 1.0
+ *
+ */
 public class AnadirPartidos extends JFrame {
 
 	private JPanel contentPane;
@@ -47,6 +52,11 @@ public class AnadirPartidos extends JFrame {
 			}
 		});
 	}
+	/**
+	 * Metodo para conseguir el id del ganador
+	 * @param list un JList
+	 * @return el idGanador
+	 */
 	public static int devolverIdGanador(JList list){
 		String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
 		ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
@@ -59,6 +69,11 @@ public class AnadirPartidos extends JFrame {
 		}
 		return idGanador;
 	}
+	/**
+	 * Metodo para conseguir el id del perdedor
+	 * @param list un JList
+	 * @return el idPerdedor
+	 */
 	public static int devolverIdPerdedor(JList list){
 		String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
 		ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
@@ -71,6 +86,11 @@ public class AnadirPartidos extends JFrame {
 		}
 		return idPerdedor;
 	}
+	/**
+	 * Consigue el id del torneo
+	 * @param combo un JComboBox
+	 * @return el id del torneo
+	 */
 	public static int devolverIdTorneo(JComboBox combo){
 		String lista="SELECT idTorneo, nombre, idGanador from Torneo";
 		ArrayList <Torneo> listaTor =SelectData.seleccionarTorneo(lista);
@@ -183,6 +203,9 @@ public class AnadirPartidos extends JFrame {
 		
 		JButton btnAadirPartido = new JButton("A\u00F1adir Partido");
 		btnAadirPartido.setBounds(400, 560, 152, 29);
+		/**
+		 * Acciona el boton añadir partido
+		 */
 		btnAadirPartido.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				InsertData insertar=new InsertData();
@@ -260,6 +283,9 @@ public class AnadirPartidos extends JFrame {
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setBounds(425, 602, 115, 29);
+		/**
+		 * Acciona el boton volver
+		 */
 		btnVolver.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				MenuAdmin pantalla=new MenuAdmin();

@@ -17,7 +17,12 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
-
+/**
+ * Pantalla de Clasificacion donde se podrá ver la clasificacion ordenada por puntos
+ * @author Peru Erro Arrue
+ * @version 1.0
+ *
+ */
 public class Clasificacion extends JFrame {
 
 	private JPanel contentPane;
@@ -53,7 +58,7 @@ public class Clasificacion extends JFrame {
 		list.setBounds(54, 116, 413, 273);
 		
 		DefaultListModel <String> model=new DefaultListModel<String>();
-		String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
+		String lista="SELECT idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador order by puntosRanking";
 		ArrayList <Jugador> listaJug=SelectData.seleccionarJugador(lista);
 		int contador=0;
 		for(Jugador j:listaJug){

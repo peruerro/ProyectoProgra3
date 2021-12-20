@@ -23,7 +23,12 @@ import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
-
+/**
+ * Pantalla de Añadir Jugador donde se podran insertar jugadores
+ * @author Peru Erro Arrue
+ * @version 1.0
+ *
+ */
 public class AnadirJugadores extends JFrame {
 
 	private JPanel contentPane;
@@ -50,7 +55,7 @@ public class AnadirJugadores extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Crea el Frame
 	 */
 	public AnadirJugadores() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,6 +125,9 @@ public class AnadirJugadores extends JFrame {
 		
 		JButton btnAadirJugador = new JButton("A\u00F1adir Jugador");
 		btnAadirJugador.setBounds(231, 517, 146, 29);
+		/**
+		 * Acciona el boton añadir jugador
+		 */
 		btnAadirJugador.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				String lista="Select idJugador, nombre, edad, nacionalidad, pala, manoHabil, posicion, puntosRanking from Jugador";
@@ -141,6 +149,9 @@ public class AnadirJugadores extends JFrame {
 		});
 		contentPane.add(btnAadirJugador);
 		
+		/**
+		 * Acciona el boton volver
+		 */
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setBounds(241, 561, 115, 29);
 		btnVolver.addActionListener(new ActionListener(){

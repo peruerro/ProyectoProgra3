@@ -22,7 +22,12 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-
+/**
+ * Pantalla de Añadir torneos donde se insertan torneos
+ * @author Peru Erro Arrue
+ * @version 1.0
+ *
+ */
 public class AnadirTorneos extends JFrame {
 
 	private JPanel contentPane;
@@ -81,6 +86,9 @@ public class AnadirTorneos extends JFrame {
 		
 		JButton btnAadirTorneo = new JButton("A\u00F1adir torneo");
 		btnAadirTorneo.setBounds(308, 336, 131, 29);
+		/**
+		 * Acciona el boton añadir torneo
+		 */
 		btnAadirTorneo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				String lista="SELECT idTorneo, nombre, idGanador from Torneo";

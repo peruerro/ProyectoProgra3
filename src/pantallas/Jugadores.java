@@ -22,7 +22,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JButton;
-
+/**
+ * Pantalla de Jugadores donde se podrán ver los jugadores y filtrar según parametros
+ * @author Peru Erro Arrue
+ * @version 1.0
+ *
+ */
 public class Jugadores extends JFrame {
 
 	private JPanel contentPane;
@@ -89,6 +94,9 @@ public class Jugadores extends JFrame {
 		
 		JButton btnFiltrar = new JButton("Filtrar");
 		btnFiltrar.setBounds(739, 233, 115, 29);
+		/**
+		 * Acciona el boton filtrar
+		 */
 		btnFiltrar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(comboBox.getSelectedItem().toString().equals("Filtrar por edad")){

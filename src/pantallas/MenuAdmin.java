@@ -77,10 +77,7 @@ public class MenuAdmin extends JFrame {
 		contentPane.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if (list.getSelectedValue().equals("Añadir noticias")){
-					AnadirNoticias pantalla=new AnadirNoticias();
-					pantalla.setVisible(true);
-				}
+				
 				if(list.getSelectedValue().equals("Añadir partidos")){
 					AnadirPartidos pantalla=new AnadirPartidos();
 					pantalla.setVisible(true);
